@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "$0")"
-source ./config.sh
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+source "$ROOT/config.sh"
 
 WORK=${WORK:-./work}
 mkdir -p "$WORK"
@@ -18,15 +19,17 @@ step_fetch() {
     mkdir -p "$WORK/v13packs"
     git -C "$WORK/pf2e-repo" archive "$PF2E_V13_REF" packs/pf2e system.pf2e.json \
         | tar x -C "$WORK/v13packs"
+    (cd "$WORK" && python3 "$ROOT/scripts/extract_rule_elements.py" \
+        pf2e-repo "$PF2E_V13_REF" re_v13.txt)
     echo "fetched $PF2E_TAG and baseline $PF2E_V13_REF"
 }
 
 step_scope() {
-    cd "$WORK" && python3 ../scripts/scope_full.py
+    cd "$WORK" && python3 "$ROOT/scripts/scope_full.py"
 }
 
 step_merge() {
-    cd "$WORK" && python3 ../scripts/merge_system.py
+    cd "$WORK" && python3 "$ROOT/scripts/merge_system.py"
     cd "$WORK" && python3 - <<'PY'
 import os, shutil
 n = 0
@@ -37,17 +40,17 @@ for pack in os.listdir('pf2e-repo/packs/pf2e'):
         shutil.copy(src, dst); n += 1
 print(f'carried {n} folder definitions')
 PY
-    cd "$WORK" && SYSTEM_DIR="$SYSTEM_DIR" python3 ../scripts/prepare_side.py
+    cd "$WORK" && SYSTEM_DIR="$SYSTEM_DIR" python3 "$ROOT/scripts/prepare_side.py"
 }
 
 step_compile() {
     cd "$WORK" && rm -rf merged-out/packs-compiled
-    cd "$WORK" && node ../scripts/compile-system.mjs \
+    cd "$WORK" && node "$ROOT/scripts/compile-system.mjs" \
         merged-out/packs merged-out/packs-compiled merged-out/side/system.json
 }
 
 step_verify() {
-    cd "$WORK" && node ../scripts/verify-system.mjs
+    cd "$WORK" && node "$ROOT/scripts/verify-system.mjs"
 }
 
 step_deploy() {

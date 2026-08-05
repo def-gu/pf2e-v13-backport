@@ -13,11 +13,21 @@ upstream = json.load(open(NEW_MANIFEST, encoding='utf-8'))
 have = {p['name'] for p in cur['packs']}
 added = [p for p in upstream['packs'] if p['name'] not in have]
 cur['packs'].extend(added)
+
+cur['manifest'] = ''
+cur.pop('download', None)
+cur.setdefault('flags', {})['pf2eV13Backport'] = {
+    'contentVersion': upstream.get('version'),
+    'mergedAt': __import__('datetime').date.today().isoformat(),
+}
+
 json.dump(cur, open(os.path.join(OUT, 'system.json'), 'w', encoding='utf-8'),
           indent=4, ensure_ascii=False)
 print(f'system.json : {len(have)} -> {len(cur["packs"])} packs '
       f'(added {[p["name"] for p in added]})')
 print(f'  version stays {cur["version"]}, compatibility {cur["compatibility"]}')
+print(f'  manifest blanked, download removed: no silent replacement by stock')
+print(f'  content marker: {cur["flags"]["pf2eV13Backport"]}')
 
 def flatten(o, p=''):
     if isinstance(o, dict):

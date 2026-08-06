@@ -1,32 +1,28 @@
+[English] | [Русский](README.ru.md)
+
 # pf2e content backport for Foundry v13
 
-Новые книги Pathfinder 2e на Foundry v13 без перехода на v14.
+Current Pathfinder 2e books on Foundry v13, without moving to v14.
 
-Разработчики pf2e заморозили ветку v13 на релизе 7.12.2 и ушли на v14. Весь контент, вышедший после — Impossible Magic, Hell's Destiny, Bastion of Blasphemies, Lost Omens High Seas, Secrets of the Unlit Star, Troubles in Grayce, NPC Core — доступен только на v14.
+The pf2e maintainers froze the v13 branch at release 7.12.2 and moved to v14. Everything published since, including Impossible Magic, Hell's Destiny, Bastion of Blasphemies, Lost Omens High Seas, Secrets of the Unlit Star, Troubles in Grayce and NPC Core, ships for v14 only.
 
-Эти скрипты переносят его на v13.
+This brings it to v13.
 
-## Что переносится
+## Install
 
-- Весь контент 8.4.0: 29544 документа, 97 компендиумов
-- Русский перевод, включая рунотворца и некроманта
-- Модули, собранные под v14
-- 61 исправление кода из ветки v14, опционально
+Paste this manifest URL into the Install System dialog in Foundry.
 
-## Что не переносится
+```
+https://github.com/def-gu/pf2e-v13-backport/releases/latest/download/system.json
+```
 
-Области заклинаний через Regions, Scene Levels, листы персонажей на ApplicationV2. Это интерфейс и канвас, контента там нет.
+The system id stays `pf2e`, so existing worlds keep working and need no changes.
 
-## Требования
+The package carries all 8.4.0 content, 29544 documents in 97 compendiums, on top of the 7.12.2 code base.
 
-- Foundry v13, система pf2e 7.12.2
-- Node и Python 3 на той же машине
-- Возможность остановить сервер на время записи
-- Резервная копия, которую вы умеете разворачивать
+## Build it yourself
 
-## Запуск
-
-Отредактируйте пути в `config.sh`, затем:
+Edit the paths in `config.sh`, then run the stages.
 
 ```bash
 ./run.sh fetch
@@ -37,65 +33,52 @@
 sudo ./run.sh deploy
 ```
 
-`scope` показывает, что изменится, до того как что-то меняется. `verify` проверяет собранное перед записью. Оба пропускать не стоит.
+`scope` reports what would change before anything changes. `verify` checks the build before it is written.
 
-Откат печатается в конце `deploy` и представляет собой копирование каталога.
+Requirements are Foundry v13 with pf2e 7.12.2, Node and Python 3 on the same machine, and the ability to stop the server while packs are written. Linux with systemd is the target. On macOS the `deploy` stage needs adjusting, on Windows the shell scripts need WSL.
 
-## Перевод
+## Backups
 
-Словари Babele привязаны к английскому названию документа, а не к версии системы, поэтому перевод для 8.x работает на 7.12.2.
+`deploy` copies the current packs, language files and manifest into `BACKUP_ROOT` before writing anything, and prints the rollback command when it finishes. Rollback is a directory copy.
 
-Берите ветку, собранную под ту же версию контента. Для 8.4.0 это `master` в [gnuraco/pf2r](https://gitlab.com/gnuraco/pf2r), покрытие около 90 процентов.
+Verify that you can restore that copy before running `deploy` on a world you care about.
 
-Копируйте только каталог `data/community/` поверх такого же в установленном модуле перевода. Скрипты из `master` рассчитаны на внутренности 8.x и на 7.12.2 не нужны.
+## Translation
 
-Там же лежат переводы 83 модулей.
+Babele dictionaries key on the English document name, so a translation built for 8.x works on 7.12.2.
 
-## Модули под v14
-
-Большинство работает на v13 без изменений кода. Мешают объявления, а не логика.
+Take the branch built against the same content version. For 8.4.0 that is `master` in [gnuraco/pf2r](https://gitlab.com/gnuraco/pf2r), giving around 90 percent coverage. The same directory carries translations for 83 modules.
 
 ```bash
-node scripts/port-module.mjs <каталог-модуля>
+./scripts/sync-translation.sh
 ```
 
-Скрипт правит `compatibility` в манифесте и `_stats.coreVersion` в компендиумах.
+It polls for a new revision at a cost of 59 bytes, pulls only what changed into a shallow clone, backs up the dictionaries in place and swaps them. Safe to run from cron. Reload the world afterwards for Babele to pick up the change.
 
-Перед этим проверьте, что модуль не использует API, которого нет в v13:
+## Modules built for v14
+
+Most run on v13 once their declarations are adjusted. Check one before touching it.
 
 ```bash
-grep -rE 'applyDataOperators|iterate(Keys|Values|Entries)|data\.operators|ForcedDeletion' <каталог-модуля>/scripts
+node scripts/check-module.mjs <module-directory>
 ```
 
-Пустой вывод означает, что кода трогать не придётся.
-
-## Три вещи, на которых легко обжечься
-
-**Вложенные документы хранятся отдельными ключами.** Foundry держит родителя со списком идентификаторов детей, а каждого ребёнка под `!journal.pages!<родитель>.<ребёнок>` или `!actors.items!<актёр>.<предмет>`. Записанные внутрь родителя, они дают пустые журналы и монстров без способностей.
-
-**`_stats.coreVersion` должен быть версией v13.** Документ с версией ядра новее установленной Foundry отказывается принимать. Это самая частая причина, по которой модуль под v14 выглядит сломанным.
-
-**Ссылки в исходниках pf2e хранятся по именам.** Превращать их в идентификаторы нужно с учётом компендиума из самой ссылки: в `classfeatures` и `actionspf2e` есть разные документы с одинаковыми именами. Ошибка здесь приводит к тому, что класс не выдаёт способности.
-
-## Обновление
-
-Это снимок, а не подписка. После каждого релиза pf2e прогон повторяется: смените `PF2E_TAG` и запустите заново.
-
-`scope` сообщает, сколько документов заблокировано из-за отсутствующих rule elements. Пока это ноль, подход работает.
-
-## Бэкпорт исправлений кода
-
-61 исправление из ветки v14 применено на 7.12.2, проходит проверку типов и собирается.
+The check reads the manifest, resolves every core API reference against the installed Foundry build, and reports the core version stamped on documents in the module compendiums. It says whether porting alone is enough or code changes are also needed.
 
 ```bash
-./run.sh fetch
-./build-system.sh
+node scripts/port-module.mjs <module-directory>
 ```
 
-Результат в `work/v13build/dist/pf2e/`. Копируется поверх `Data/systems/pf2e/` всё, кроме `packs/` и `system.json`.
+Porting rewrites `compatibility` in the manifest and `_stats.coreVersion` in the compendiums. Foundry refuses documents stamped with a core version above its own, which is the most common reason a v14 module appears broken.
 
-Список и метод отбора в [docs/backport-candidates.md](docs/backport-candidates.md). Коротко: `git apply` для отбора не годится, потому что проверяет только текст, а код написан против типов v14. Единственный работающий критерий — компиляция.
+## Updating
 
-## Лицензия
+This is a snapshot. Each pf2e release means running the stages again after changing `PF2E_TAG`.
 
-MIT для скриптов. Контент забирается из репозитория pf2e при запуске и здесь не распространяется.
+`scope` reports how many documents are blocked by missing rule elements. While that stays at zero, the approach holds.
+
+## License
+
+MIT for the scripts. Content is fetched from the pf2e repository at run time and is not redistributed here.
+
+Released packages do redistribute the built system and carry the upstream Apache 2.0, OGL and ORC licenses. Not affiliated with the pf2e system maintainers or Paizo.

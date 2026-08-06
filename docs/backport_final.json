@@ -26,36 +26,6 @@
   ]
  },
  {
-  "sha": "3e10cb824",
-  "subject": "Increase `SceneConfig` width",
-  "files": [
-   "b/src/module/scene/sheet.ts"
-  ]
- },
- {
-  "sha": "b2e8e632b",
-  "subject": "Update some deletions in feat sheet",
-  "files": [
-   "b/src/module/item/feat/sheet.ts"
-  ]
- },
- {
-  "sha": "06ebbdb36",
-  "subject": "Pass along `Scene#view` options (#21970)",
-  "files": [
-   "b/src/module/scene/document.ts"
-  ]
- },
- {
-  "sha": "6ebbdef62",
-  "subject": "Restore token effect icons (#21990)",
-  "files": [
-   "b/src/module/active-effect.ts",
-   "b/src/module/actor/base.ts",
-   "b/src/module/rules/rule-element/token-effect-icon.ts"
-  ]
- },
- {
   "sha": "36752d136",
   "subject": "Fix double-barrel icon on PC sheet (#22004)",
   "files": [
@@ -77,21 +47,6 @@
   ]
  },
  {
-  "sha": "9bae13ee2",
-  "subject": "Fix setting always-show-dialog checkbox state in `DamageModifierDialog` (#22072)",
-  "files": [
-   "b/src/module/actor/helpers.ts"
-  ]
- },
- {
-  "sha": "e7fac23f4",
-  "subject": "Refactor `EncounterPF2e` to utilize core turn-event handlers (#22077)",
-  "files": [
-   "b/src/module/encounter/combatant.ts",
-   "b/src/module/encounter/document.ts"
-  ]
- },
- {
   "sha": "b1f5003cf",
   "subject": "Resolve injected properties in DamageAlteration predicates (#22098)",
   "files": [
@@ -109,31 +64,10 @@
   ]
  },
  {
-  "sha": "06c365b47",
-  "subject": "Fix troop creation in unviewed scenes (#22108)",
-  "files": [
-   "b/src/module/scene/token-document/document.ts"
-  ]
- },
- {
-  "sha": "5cf893e72",
-  "subject": "Use modifier type to find proficiency modifier in mythic rerolls (#22110)",
-  "files": [
-   "b/src/module/system/check/check.ts"
-  ]
- },
- {
   "sha": "5f19d7fec",
   "subject": "Add draconic benefactors from draconic codex to dragon disciple choices (#21978)",
   "files": [
    "b/src/module/migration/runner/base.ts"
-  ]
- },
- {
-  "sha": "e65e4e514",
-  "subject": "Fix tag strikethrough when rerolling untrained improv using mythic (#22145)",
-  "files": [
-   "b/src/module/system/check/check.ts"
   ]
  },
  {
@@ -145,34 +79,12 @@
   ]
  },
  {
-  "sha": "c5a25057d",
-  "subject": "Prevent troop token flags from being saved to prototype tokens (#22167)",
-  "files": [
-   "b/src/module/actor/base.ts"
-  ]
- },
- {
   "sha": "2a8de0900",
   "subject": "Fix calculation of critical damage given precision immunity (#21932)",
   "files": [
    "b/src/module/system/damage/helpers.ts",
    "b/src/module/system/damage/roll.ts",
    "b/src/module/system/damage/terms.ts"
-  ]
- },
- {
-  "sha": "5189f2530",
-  "subject": "Assign unique slug for each flat damage instance in NPC attacks (#22204)",
-  "files": [
-   "b/src/module/rules/helpers.ts",
-   "b/src/module/system/damage/weapon.ts"
-  ]
- },
- {
-  "sha": "a7ed3c531",
-  "subject": "Fix migration choking on embedded spells without flags (#22207)",
-  "files": [
-   "b/src/module/migration/runner/index.ts"
   ]
  },
  {
@@ -191,29 +103,6 @@
   ]
  },
  {
-  "sha": "7e3903b68",
-  "subject": "Fix errors deleting min and max effect badge fields (#22209)",
-  "files": [
-   "b/src/module/item/abstract-effect/data.ts",
-   "b/src/module/item/effect/data.ts",
-   "b/src/module/item/effect/document.ts"
-  ]
- },
- {
-  "sha": "b77619817",
-  "subject": "Fix Item Transfer message localization (#22268)",
-  "files": [
-   "b/src/module/actor/item-transfer.ts"
-  ]
- },
- {
-  "sha": "b6dda73a7",
-  "subject": "Refresh token bars on Temp HP updates. (#22246)",
-  "files": [
-   "b/src/module/scene/token-document/document.ts"
-  ]
- },
- {
   "sha": "8c62342ce",
   "subject": "Include spell attack and dc domains for special statistic spellcasting (#22281)",
   "files": [
@@ -228,49 +117,10 @@
   ]
  },
  {
-  "sha": "d405a2566",
-  "subject": "Add expend tag to weapon description and strikes (#22276)",
-  "files": [
-   "b/src/module/item/weapon/document.ts"
-  ]
- },
- {
-  "sha": "b4f2e3d0d",
-  "subject": "Allow \"base\" actor and item subtypes to construct (#22297)",
-  "files": [
-   "b/src/module/actor/base.ts",
-   "b/src/module/item/base/document.ts"
-  ]
- },
- {
-  "sha": "333235651",
-  "subject": "Add weapon boost automation (#22298)",
-  "files": [
-   "b/src/module/actor/character/auxiliary.ts",
-   "b/src/module/actor/character/helpers.ts",
-   "b/src/module/system/damage/weapon.ts",
-   "b/src/scripts/config/traits.ts"
-  ]
- },
- {
   "sha": "8d64043ea",
   "subject": "Set `ignored` if predicate fails in `StrikeRuleElement#beforePrepareData` (#22317)",
   "files": [
    "b/src/module/rules/rule-element/strike.ts"
-  ]
- },
- {
-  "sha": "5e5e5ecd8",
-  "subject": "Include piloting/computers in RK skills list in party sheet (#22328)",
-  "files": [
-   "b/src/module/actor/party/sheet.ts"
-  ]
- },
- {
-  "sha": "d94c684bc",
-  "subject": "Add {item|id}-{meleeOrRanged}-damage domain to attacks, to enable ammunition rules (#22332)",
-  "files": [
-   "b/src/module/actor/helpers.ts"
   ]
  },
  {
@@ -285,20 +135,6 @@
   "subject": "Fix icon of add/remove currency dialog (#22353)",
   "files": [
    "b/src/module/actor/sheet/popups/update-currency-dialog.ts"
-  ]
- },
- {
-  "sha": "4494a0909",
-  "subject": "Patch a typo in mandatoryMelee regexp (#22398)",
-  "files": [
-   "b/src/module/item/weapon/document.ts"
-  ]
- },
- {
-  "sha": "c95e08a57",
-  "subject": "Preserve token mirror state when applying TokenImage scale override (#22414)",
-  "files": [
-   "b/src/module/scene/token-document/document.ts"
   ]
  },
  {
@@ -356,13 +192,6 @@
   ]
  },
  {
-  "sha": "1e16270e7",
-  "subject": "Apply each persistent damage from dragged formula (#22503)",
-  "files": [
-   "b/src/module/actor/sheet/base.ts"
-  ]
- },
- {
   "sha": "513a87eb9",
   "subject": "Apply roll options to inline damage rolled from effect tooltips (#22508)",
   "files": [
@@ -384,26 +213,10 @@
   ]
  },
  {
-  "sha": "96a499492",
-  "subject": "Prevent chat bubbles if message doesn't look like in-character text (#22525)",
-  "files": [
-   "b/src/module/chat-message/document.ts"
-  ]
- },
- {
   "sha": "c08c8a942",
   "subject": "Fix background color on dragged equipment (#22554)",
   "files": [
    "b/src/styles/actor/_inventory.scss"
-  ]
- },
- {
-  "sha": "b0cd9544d",
-  "subject": "Improve trade initiation: party-sheet member drops, request expiry with alerts on both sides, prevent sending to familiars (#22520)",
-  "files": [
-   "b/src/module/actor/creature/sheet.ts",
-   "b/src/module/actor/sheet/base.ts",
-   "b/src/module/apps/trade-dialog/app.ts"
   ]
  },
  {
@@ -435,44 +248,10 @@
   ]
  },
  {
-  "sha": "8e4dddc87",
-  "subject": "Fix issues with transferring credits (#22588)",
-  "files": [
-   "b/src/module/actor/sheet/base.ts",
-   "b/src/module/item/physical/document.ts",
-   "b/src/module/item/physical/helpers.ts"
-  ]
- },
- {
-  "sha": "74bd0afc5",
-  "subject": "Remove manipulate trait from alchemical bomb strikes (#22621)",
-  "files": [
-   "b/src/module/actor/character/document.ts",
-   "b/src/module/actor/helpers.ts"
-  ]
- },
- {
-  "sha": "20a14cd71",
-  "subject": "Snapshot area fire save dc in chat message context (#22626)",
-  "files": [
-   "b/src/module/actor/helpers.ts",
-   "b/src/module/chat-message/data.ts",
-   "b/src/module/chat-message/listeners/cards.ts"
-  ]
- },
- {
   "sha": "4f35a5efd",
   "subject": "Fix ammo quantity input when there is more than one type (#22645)",
   "files": [
    "b/src/module/actor/character/sheet.ts"
-  ]
- },
- {
-  "sha": "26e103eb6",
-  "subject": "Fix weapon trait toggles on attached weapons (#22653)",
-  "files": [
-   "b/src/module/item/weapon/document.ts",
-   "b/src/module/item/weapon/trait-toggles.ts"
   ]
  },
  {
@@ -512,15 +291,6 @@
   ]
  },
  {
-  "sha": "387834a5d",
-  "subject": "Convert `LootNPCsPopup` to DialogV2 (#22732)",
-  "files": [
-   "b/src/module/actor/loot/sheet.ts",
-   "b/src/module/actor/sheet/popups/loot-npcs-popup.ts",
-   "b/src/styles/actor/loot/_index.scss"
-  ]
- },
- {
   "sha": "669dc661d",
   "subject": "Add content from Impossible magic (#22769)",
   "files": [
@@ -533,6 +303,156 @@
   "subject": "Fix image path for UBP item/currency (#22800)",
   "files": [
    "b/src/module/actor/inventory/upb.json"
+  ]
+ },
+ {
+  "sha": "3e10cb824",
+  "subject": "Increase `SceneConfig` width",
+  "files": [
+   "b/src/module/scene/sheet.ts"
+  ]
+ },
+ {
+  "sha": "9bae13ee2",
+  "subject": "Fix setting always-show-dialog checkbox state in `DamageModifierDialog` (#22072)",
+  "files": [
+   "b/src/module/actor/helpers.ts"
+  ]
+ },
+ {
+  "sha": "06c365b47",
+  "subject": "Fix troop creation in unviewed scenes (#22108)",
+  "files": [
+   "b/src/module/scene/token-document/document.ts"
+  ]
+ },
+ {
+  "sha": "5cf893e72",
+  "subject": "Use modifier type to find proficiency modifier in mythic rerolls (#22110)",
+  "files": [
+   "b/src/module/system/check/check.ts"
+  ]
+ },
+ {
+  "sha": "e65e4e514",
+  "subject": "Fix tag strikethrough when rerolling untrained improv using mythic (#22145)",
+  "files": [
+   "b/src/module/system/check/check.ts"
+  ]
+ },
+ {
+  "sha": "c5a25057d",
+  "subject": "Prevent troop token flags from being saved to prototype tokens (#22167)",
+  "files": [
+   "b/src/module/actor/base.ts"
+  ]
+ },
+ {
+  "sha": "a7ed3c531",
+  "subject": "Fix migration choking on embedded spells without flags (#22207)",
+  "files": [
+   "b/src/module/migration/runner/index.ts"
+  ]
+ },
+ {
+  "sha": "b77619817",
+  "subject": "Fix Item Transfer message localization (#22268)",
+  "files": [
+   "b/src/module/actor/item-transfer.ts"
+  ]
+ },
+ {
+  "sha": "b6dda73a7",
+  "subject": "Refresh token bars on Temp HP updates. (#22246)",
+  "files": [
+   "b/src/module/scene/token-document/document.ts"
+  ]
+ },
+ {
+  "sha": "b4f2e3d0d",
+  "subject": "Allow \"base\" actor and item subtypes to construct (#22297)",
+  "files": [
+   "b/src/module/actor/base.ts",
+   "b/src/module/item/base/document.ts"
+  ]
+ },
+ {
+  "sha": "333235651",
+  "subject": "Add weapon boost automation (#22298)",
+  "files": [
+   "b/src/module/actor/character/auxiliary.ts",
+   "b/src/module/actor/character/helpers.ts",
+   "b/src/module/system/damage/weapon.ts",
+   "b/src/scripts/config/traits.ts"
+  ]
+ },
+ {
+  "sha": "5e5e5ecd8",
+  "subject": "Include piloting/computers in RK skills list in party sheet (#22328)",
+  "files": [
+   "b/src/module/actor/party/sheet.ts"
+  ]
+ },
+ {
+  "sha": "d94c684bc",
+  "subject": "Add {item|id}-{meleeOrRanged}-damage domain to attacks, to enable ammunition rules (#22332)",
+  "files": [
+   "b/src/module/actor/helpers.ts"
+  ]
+ },
+ {
+  "sha": "4494a0909",
+  "subject": "Patch a typo in mandatoryMelee regexp (#22398)",
+  "files": [
+   "b/src/module/item/weapon/document.ts"
+  ]
+ },
+ {
+  "sha": "c95e08a57",
+  "subject": "Preserve token mirror state when applying TokenImage scale override (#22414)",
+  "files": [
+   "b/src/module/scene/token-document/document.ts"
+  ]
+ },
+ {
+  "sha": "1e16270e7",
+  "subject": "Apply each persistent damage from dragged formula (#22503)",
+  "files": [
+   "b/src/module/actor/sheet/base.ts"
+  ]
+ },
+ {
+  "sha": "b0cd9544d",
+  "subject": "Improve trade initiation: party-sheet member drops, request expiry with alerts on both sides, prevent sending to familiars (#22520)",
+  "files": [
+   "b/src/module/actor/creature/sheet.ts",
+   "b/src/module/actor/sheet/base.ts",
+   "b/src/module/apps/trade-dialog/app.ts"
+  ]
+ },
+ {
+  "sha": "74bd0afc5",
+  "subject": "Remove manipulate trait from alchemical bomb strikes (#22621)",
+  "files": [
+   "b/src/module/actor/character/document.ts",
+   "b/src/module/actor/helpers.ts"
+  ]
+ },
+ {
+  "sha": "20a14cd71",
+  "subject": "Snapshot area fire save dc in chat message context (#22626)",
+  "files": [
+   "b/src/module/actor/helpers.ts",
+   "b/src/module/chat-message/data.ts",
+   "b/src/module/chat-message/listeners/cards.ts"
+  ]
+ },
+ {
+  "sha": "26e103eb6",
+  "subject": "Fix weapon trait toggles on attached weapons (#22653)",
+  "files": [
+   "b/src/module/item/weapon/document.ts",
+   "b/src/module/item/weapon/trait-toggles.ts"
   ]
  }
 ]

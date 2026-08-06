@@ -35,6 +35,10 @@ backup="$BACKUP_ROOT/pf2e-ru-community-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$BACKUP_ROOT"
 cp -a "$TARGET" "$backup"
 
+ls -1dt "$BACKUP_ROOT"/pf2e-ru-community-* 2>/dev/null | tail -n +4 | while read -r old; do
+    rm -rf "$old"
+done
+
 rm -rf "$TARGET"
 cp -a "$CLONE/data/community" "$TARGET"
 chown -R "$(stat -c '%U:%G' "$MODULES_DIR/pf2e-ru")" "$TARGET" 2>/dev/null || true

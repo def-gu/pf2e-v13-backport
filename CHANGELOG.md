@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Code backport tooling and notes, which need manual verification and do not belong in a pipeline aimed at end users
 
+## [7.13.1] - 2026-08-11
+
+### Fixed
+
+- Compendium Browser equipment sorting by price, which silently sorted by name because the equipment index omitted the field the sorter reads
+
 ## [7.13.0] - 2026-08-06
 
 First published package. Installable through the Install System dialog in Foundry.
@@ -34,5 +40,6 @@ First published package. Installable through the Install System dialog in Foundr
 - Compendium links resolved to ids with the pack from the link honoured, so classes grant their features
 - `_stats.coreVersion` stamped with a v13 version, so Foundry accepts the documents
 
-[Unreleased]: https://github.com/def-gu/pf2e-v13-backport/compare/7.13.0...HEAD
+[Unreleased]: https://github.com/def-gu/pf2e-v13-backport/compare/7.13.1...HEAD
+[7.13.1]: https://github.com/def-gu/pf2e-v13-backport/compare/7.13.0...7.13.1
 [7.13.0]: https://github.com/def-gu/pf2e-v13-backport/releases/tag/7.13.0
